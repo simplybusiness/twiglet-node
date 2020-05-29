@@ -13,7 +13,7 @@ npm install --save @simplybusiness/twiglet
 Create a new logger like so:
 
 ```javascript
-const Logger = require('./logger')
+const Logger = require('@simplybusiness/twiglet')
 const log = Logger({ service: 'petshop' })
 ```
 

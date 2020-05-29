@@ -1,5 +1,5 @@
 // Imports
-const Logger = require("./logger")
+const Logger = require("@simplybusiness/twiglet")
 const express = require("express")
 
 // Constants

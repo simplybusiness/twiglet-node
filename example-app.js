@@ -1,4 +1,4 @@
-const Logger = require('./logger')
+const Logger = require('@simplybusiness/twiglet')
 
 const PORT = 8080
 
