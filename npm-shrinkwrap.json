@@ -1,6 +1,6 @@
 {
   "name": "@simplybusiness/twiglet",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -56,11 +56,6 @@
       "resolved": "https://registry.npmjs.org/date-now/-/date-now-0.1.4.tgz",
       "integrity": "sha1-6vQ5/U1ISK105cx9vvIAZyueNFs=",
       "dev": true
-    },
-    "deepmerge": {
-      "version": "4.2.2",
-      "resolved": "https://registry.npmjs.org/deepmerge/-/deepmerge-4.2.2.tgz",
-      "integrity": "sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg=="
     },
     "dom-serializer": {
       "version": "0.2.2",

@@ -1,8 +1,10 @@
 # Twiglet: Node.js version
 
-![Node.js CI](https://github.com/simplybusiness/twiglet-node/workflows/Node.js%20CI/badge.svg?branch=master)
+Like a log, only smaller.
 
-This library provides a minimal JSON logging interface suitable for use in (micro)services. See the [README](RATIONALE.md) for design rationale and an explantion of the Elastic Common Schema that we are using for log attribute naming.
+This library provides a minimal JSON logging interface suitable for use in (micro)services. See the [RATIONALE](RATIONALE.md) for design rationale and an explantion of the Elastic Common Schema that we are using for log attribute naming.
+
+![Node.js CI](https://github.com/simplybusiness/twiglet-node/workflows/Node.js%20CI/badge.svg?branch=master)
 
 ## Installation
 
