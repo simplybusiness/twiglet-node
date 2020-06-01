@@ -1,4 +1,4 @@
-const merge = require('deepmerge')
+const merge = require('./merge')
 
 const json_helper = (json) => {
   return Object.keys(json).reduce((acc, cur) => {
