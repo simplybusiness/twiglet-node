@@ -1,6 +1,6 @@
 {
   "name": "@simplybusiness/twiglet",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A simple JSON-logging micro-library for services",
   "main": "logger.js",
   "scripts": {
