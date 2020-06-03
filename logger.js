@@ -19,11 +19,11 @@
 const assert = require('assert')
 const jsonHelper = require('./json-helper')
 
-const Logger = (conf, scopedProperties) => {
-  assert.equal(typeof(conf.service), 'string',
+const Logger = (service, conf, scopedProperties) => {
+  assert.equal(typeof(service), 'string',
                'configuration must have a service name')
 
-  var { now, output, service } = conf
+  var { now, output } = conf
   if (typeof(now) != 'function') { now = () => (new Date()).toISOString() }
   if (typeof(output) != 'object' || typeof(output.log) != 'function') {
     output = console
@@ -70,7 +70,8 @@ const Logger = (conf, scopedProperties) => {
     error: log.bind(null, 'error'),
     critical: log.bind(null, 'critical'),
     with: (moreProperties) => {
-      return Logger(conf,
+      return Logger(service,
+                    conf,
                     {...scopedProperties,
                      ...moreProperties})
     } // end .with
