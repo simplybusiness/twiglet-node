@@ -18,7 +18,7 @@ Create a new logger like so:
 
 ```javascript
 const Logger = require('@simplybusiness/twiglet')
-const log = Logger('petshop')
+const log = Logger('service-name')
 ```
 
 The logger may be passed in the configuration object an optional output attribute which should be an object with a 'log' method - like `console`. The configuration object may also have an optional now atttribute, which should be a function that returns an ISO 8601 compliant datetimestamp. The defaults should serve for most uses, though you may want to override them for testing as we have done [here](./spec/logger-spec.js).

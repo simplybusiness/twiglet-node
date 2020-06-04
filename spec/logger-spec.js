@@ -19,10 +19,10 @@ class FakeConsole {
 // Tests
 describe('logging', () => {
   beforeAll(() => {
-    this.log = Logger('petshop', {
-      now: () => '2016-02-15T12:34:56.789Z',
-      output: new FakeConsole()
-    })
+    this.log = Logger('petshop',
+                      {},
+                      () => '2016-02-15T12:34:56.789Z',
+                      new FakeConsole())
   })
 
   it('should throw an error without a message', () => {
@@ -70,11 +70,10 @@ describe('logging', () => {
       request: { method: 'get' },
       response: { status_code: 200 }
     }
-    const myLogger = Logger('petshop', {
-      now: () => '2016-02-15T12:34:56.789Z',
-      output: new FakeConsole()
-    }, extraProperties)
-
+    const myLogger = Logger('petshop',
+                            extraProperties,
+                            () => '2016-02-15T12:34:56.789Z',
+                            new FakeConsole())
     myLogger.error(extraProperties)
     const contents = JSON.parse(myLogger.output.printed)
 

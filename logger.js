@@ -19,11 +19,12 @@
 const assert = require('assert')
 const jsonHelper = require('./json-helper')
 
-const Logger = (service, conf, scopedProperties) => {
-  assert.equal(typeof(service), 'string',
+const Logger = (service_name,
+                defaultProperties = {},
+                now = null,
+                output = console) => {
+  assert.equal(typeof(service_name), 'string',
                'configuration must have a service name')
-
-  var { now, output } = conf
   if (typeof(now) != 'function') { now = () => (new Date()).toISOString() }
   if (typeof(output) != 'object' || typeof(output.log) != 'function') {
     output = console
@@ -51,8 +52,8 @@ const Logger = (service, conf, scopedProperties) => {
                                  stacktrace: err.stack.split('\n') }}}
     const totalMessage = { ...{ log: { level: severity },
                                  '@timestamp': now(),
-                                 service: { name: service }},
-                            ...scopedProperties,
+                                 service: { name: service_name }},
+                            ...defaultProperties,
                             ...errorMessage,
                             ...message }
     const nestedMessage = jsonHelper(totalMessage)
@@ -62,18 +63,19 @@ const Logger = (service, conf, scopedProperties) => {
   return {
     now: now,
     output: output,
-    service: service,
-    scopedProperties: scopedProperties,
+    service_name: service_name,
+    defaultProperties: defaultProperties,
     debug: log.bind(null, 'debug'),
     info: log.bind(null, 'info'),
     warning: log.bind(null, 'warning'),
     error: log.bind(null, 'error'),
     critical: log.bind(null, 'critical'),
     with: (moreProperties) => {
-      return Logger(service,
-                    conf,
-                    {...scopedProperties,
-                     ...moreProperties})
+      return Logger(service_name,
+                    {...defaultProperties,
+                     ...moreProperties},
+                    now,
+                    output)
     } // end .with
   } // end return
 } // end Logger
