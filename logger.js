@@ -68,6 +68,7 @@ const Logger = (service_name,
     debug: log.bind(null, 'debug'),
     info: log.bind(null, 'info'),
     warning: log.bind(null, 'warning'),
+    warn: log.bind(null, 'warning'),
     error: log.bind(null, 'error'),
     critical: log.bind(null, 'critical'),
     with: (moreProperties) => {
