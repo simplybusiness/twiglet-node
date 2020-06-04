@@ -58,7 +58,7 @@ describe('logging', () => {
 
     expect(contents.message).toBe('An error!')
     expect(contents.error.message).toBe('console.thing is not a function')
-    expect(contents.error.stacktrace[1]).toContain('logger-spec')
+    expect(contents.error.stack_trace[1]).toContain('logger-spec')
   })
 
   it('should log scoped properties defined at creation', () => {

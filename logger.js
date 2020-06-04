@@ -49,7 +49,7 @@ const Logger = (serviceName,
     var errorMessage = {}
     if (err) {
       errorMessage = { error: { message: err.message,
-                                 stacktrace: err.stack.split('\n') }}}
+                                stack_trace: err.stack.split('\n') }}}
     const totalMessage = { ...{ log: { level: severity },
                                  '@timestamp': now(),
                                  service: { name: serviceName }},
