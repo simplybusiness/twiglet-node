@@ -19,11 +19,12 @@
 const assert = require('assert')
 const jsonHelper = require('./json-helper')
 
-const Logger = (conf, scopedProperties) => {
-  assert.equal(typeof(conf.service), 'string',
+const Logger = (serviceName,
+                defaultProperties = {},
+                now = null,
+                output = console) => {
+  assert.equal(typeof(serviceName), 'string',
                'configuration must have a service name')
-
-  var { now, output, service } = conf
   if (typeof(now) != 'function') { now = () => (new Date()).toISOString() }
   if (typeof(output) != 'object' || typeof(output.log) != 'function') {
     output = console
@@ -48,11 +49,11 @@ const Logger = (conf, scopedProperties) => {
     var errorMessage = {}
     if (err) {
       errorMessage = { error: { message: err.message,
-                                 stacktrace: err.stack.split('\n') }}}
+                                stack_trace: err.stack.split('\n') }}}
     const totalMessage = { ...{ log: { level: severity },
                                  '@timestamp': now(),
-                                 service: { name: service }},
-                            ...scopedProperties,
+                                 service: { name: serviceName }},
+                            ...defaultProperties,
                             ...errorMessage,
                             ...message }
     const nestedMessage = jsonHelper(totalMessage)
@@ -62,17 +63,20 @@ const Logger = (conf, scopedProperties) => {
   return {
     now: now,
     output: output,
-    service: service,
-    scopedProperties: scopedProperties,
+    serviceName: serviceName,
+    defaultProperties: defaultProperties,
     debug: log.bind(null, 'debug'),
     info: log.bind(null, 'info'),
     warning: log.bind(null, 'warning'),
+    warn: log.bind(null, 'warning'),
     error: log.bind(null, 'error'),
     critical: log.bind(null, 'critical'),
     with: (moreProperties) => {
-      return Logger(conf,
-                    {...scopedProperties,
-                     ...moreProperties})
+      return Logger(serviceName,
+                    {...defaultProperties,
+                     ...moreProperties},
+                    now,
+                    output)
     } // end .with
   } // end return
 } // end Logger

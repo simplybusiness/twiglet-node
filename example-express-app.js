@@ -1,18 +1,18 @@
 // Imports
-const Logger = require("@simplybusiness/twiglet")
-const express = require("express")
+const Logger = require('@simplybusiness/twiglet')
+const express = require('express')
 
 // Constants
 const PORT = 8080
 
 // Define a logger
-const log = Logger({ service: "petshop" })
+const log = Logger('petshop')
 
 // Define some express middleware
 const loggingMiddleware = (req, res, next) => {
   log.info({
-    event: { action: "http request" },
-    message: "request received",
+    event: { action: 'http request' },
+    message: 'request received',
     http: {
       url: {
         path: req.path,
@@ -33,7 +33,7 @@ const errorHandler = (err, req, res, next) => {
   // Probably no need for URL/request info here as request
   // already logged by previous middleware
   log.error({
-    message: "Error",
+    message: 'Error',
     response: { status_code: 500 }}, err)
   res.status(500)
   res.render('An error has occurred')
@@ -44,12 +44,12 @@ var app = express()
 
 app.use(loggingMiddleware)
 
-app.get("/", (req, res) => {
-  res.send("This is the home Page")
+app.get('/', (req, res) => {
+  res.send('This is the home Page')
 })
 
-app.get("/broken", (req, res) => {
-  throw(new Error("Emergency!"))
+app.get('/broken', (req, res) => {
+  throw(new Error('Emergency!'))
 })
 
 app.use(errorHandler)
@@ -57,7 +57,7 @@ app.use(errorHandler)
 // Start our petshop
 app.listen(PORT, () => {
   log.info({
-    event: { action: "startup" },
+    event: { action: 'startup' },
     message: `Ready to go, listening on port ${PORT}`,
     server: { port: PORT }
   })
