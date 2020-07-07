@@ -2,6 +2,7 @@ name: npm-publish
 on:
   push:
     branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -21,6 +22,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm publish --dry-run
+      - run: npm publish
         env:
+          NODE_ENV: production
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
