@@ -37,6 +37,7 @@ describe('logging', () => {
     expect(contents['@timestamp']).toBe('2016-02-15T12:34:56.789Z')
     expect(contents.service.name).toBe('petshop')
     expect(contents.log.level).toBe('error')
+    expect(contents.ecs.version).toBe(this.log.ECS_VERSION)
     expect(contents.message).toBe('Out of pets exception')
   })
 

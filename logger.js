@@ -18,6 +18,7 @@
 
 const assert = require('assert')
 const jsonHelper = require('./json-helper')
+const ECS_VERSION = '1.5.0'
 
 const Logger = (serviceName,
                 defaultProperties = {},
@@ -50,17 +51,19 @@ const Logger = (serviceName,
     if (err) {
       errorMessage = { error: { message: err.message,
                                 stack_trace: err.stack.split('\n') }}}
-    const totalMessage = { ...{ log: { level: severity },
-                                 '@timestamp': now(),
-                                 service: { name: serviceName }},
-                            ...defaultProperties,
-                            ...errorMessage,
-                            ...message }
+    const totalMessage = { ...{ ecs: { version: ECS_VERSION },
+                                log: { level: severity },
+                                '@timestamp': now(),
+                                service: { name: serviceName }},
+                           ...defaultProperties,
+                           ...errorMessage,
+                           ...message }
     const nestedMessage = jsonHelper(totalMessage)
     output.log(JSON.stringify(nestedMessage))
   }
 
   return {
+    ECS_VERSION: ECS_VERSION,
     now: now,
     output: output,
     serviceName: serviceName,
