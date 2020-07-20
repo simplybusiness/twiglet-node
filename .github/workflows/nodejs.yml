@@ -27,4 +27,4 @@ jobs:
       - run: |
           npm ci
           npm run coverage
-      - run: ./cc-test-reporter after-build
+      - run: ./cc-test-reporter --id ${{ secrets.CC_TEST_REPORTER_ID }} after-build
