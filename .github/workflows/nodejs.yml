@@ -20,10 +20,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > ./cc-test-reporter
-      - run: chmod +x ./cc-test-reporter
-      - run: ./cc-test-reporter before-build
-      - run: npm ci
-      - run: npm test
-      - run: npm run coverage
-      - run: ./cc-test-reporter after-build
+      - run: |
+          echo "Test reporter " $CC_TEST_REPORTER_ID
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+          npm ci
+          npm test
+          npm run coverage
+          ./cc-test-reporter after-build
