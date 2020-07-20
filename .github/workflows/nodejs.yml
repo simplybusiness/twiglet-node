@@ -24,7 +24,6 @@ jobs:
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
-          printenv CC_TEST_REPORTER_ID
       - run: |
           npm ci
           npm run coverage
