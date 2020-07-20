@@ -4,7 +4,8 @@
   "description": "A simple JSON-logging micro-library for services",
   "main": "logger.js",
   "scripts": {
-    "test": "jshint *.js && jasmine spec/*.js"
+    "test": "jshint *.js && jasmine spec/*.js",
+    "coverage": "npx nyc --reporter=lcov --reporter=text-summary npm test"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,8 @@
   },
   "devDependencies": {
     "jasmine": "3.x",
-    "jshint": "2.x"
+    "jshint": "2.x",
+    "nyc": "15.x"
   },
   "jshintConfig": {
     "esversion": 10,
