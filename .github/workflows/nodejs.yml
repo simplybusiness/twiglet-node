@@ -25,6 +25,7 @@ jobs:
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
           printenv CC_TEST_REPORTER_ID
+      - run: |
           npm ci
           npm run coverage
-          ./cc-test-reporter after-build
+      - run: ./cc-test-reporter after-build
