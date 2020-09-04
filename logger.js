@@ -50,6 +50,7 @@ const Logger = (serviceName,
     var errorMessage = {}
     if (err) {
       errorMessage = { error: { message: err.message,
+                                type: err.name,
                                 stack_trace: err.stack.split('\n') }}}
     const totalMessage = { ...{ ecs: { version: ECS_VERSION },
                                 log: { level: severity },
