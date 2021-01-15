@@ -24,6 +24,14 @@ if (dbErr) {
   requestLog.error({ message: 'DB connection failed.' })
 }
 
+// Example of an exception being logged together with a stack trace
+// and a custom message e.g. during login
+try {
+  throw new Error("Oh noes!")
+} catch(err) {
+  requestLog.error({ message: 'Failed during customer login' }, err)
+}
+
 // We return an error to the requester
 requestLog.info({ message: 'Internal Server Error', http: { request: { method: 'get'}, response: { status_code: 500 }}})
 

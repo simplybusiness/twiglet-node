@@ -82,6 +82,45 @@ which will print:
 {"service":{"name":"petstore"},"@timestamp":"2020-05-07T09:06:52.409Z","event":{"action":"HTTP request"},"log":{"level":"error"},"trace":{"id":"1c8a5fb2-fecd-44d8-92a4-449eb2ce4dcb"},"http":{"request":{"method":"post","url.path":"/pet/buy"},"response":{"status_code":500}},"message":"Error 500 in /pets/buy"}
 ```
 
+## Logging of [Error objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+```javascript
+try {
+  throw new Error("Oh noes!")
+} catch(err) {
+  requestLog.error({ message: 'Failed during customer login' }, err)
+}
+```
+
+which will print (prettified):
+
+```json
+{
+  "ecs": {
+    "version": "1.5.0"
+  },
+  "log": {
+    "level": "error"
+  },
+  ...
+  "error": {
+    "message": "Oh noes!",
+    "type": "Error",
+    "stack_trace": [
+      "Error: Oh noes!",
+      "    at Object.<anonymous> (/home/twiglet-node/example-app.js:28:9)",
+      "    at Module._compile (internal/modules/cjs/loader.js:1076:30)",
+      "    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)",
+      "    at Module.load (internal/modules/cjs/loader.js:941:32)",
+      "    at Function.Module._load (internal/modules/cjs/loader.js:782:14)",
+      "    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+      "    at internal/main/run_main_module.js:17:47"
+    ]
+  },
+  "message": "Failed during customer login"
+}
+```
+
 ## Use of dotted keys
 
 Writing nested json objects could be confusing. This library has a built-in feature to convert dotted keys into nested objects, so if you log like this:
