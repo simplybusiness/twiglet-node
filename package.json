@@ -1,6 +1,6 @@
 {
   "name": "@simplybusiness/twiglet",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "A simple JSON-logging micro-library for services",
   "main": "logger.js",
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/simplybusiness/twiglet-node#readme",
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=18.0.0"
   },
   "devDependencies": {
     "jasmine": "5.x",
