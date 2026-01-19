@@ -29,7 +29,7 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "jasmine": "5.x",
+    "jasmine": "6.x",
     "jshint": "2.x",
     "nyc": "17.x"
   },
