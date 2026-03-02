@@ -31,7 +31,7 @@
   "devDependencies": {
     "jasmine": "5.x",
     "jshint": "2.x",
-    "nyc": "17.x"
+    "nyc": "18.x"
   },
   "jshintConfig": {
     "esversion": 10,
